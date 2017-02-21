@@ -10,9 +10,14 @@ export class ApiCallsComponent implements OnInit {
     'http://www.google.com',
     'http://www.yahoo.com'
   ];
+  selectedApiCall: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelect(apiCall: string): void {
+    this.selectedApiCall = apiCall;
   }
 }
