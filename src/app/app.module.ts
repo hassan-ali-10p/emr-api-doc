@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ApiCallsComponent } from './api-calls/api-calls.component';
+import { ApiCallComponent } from './api-call/api-call.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ApiCallsComponent
+    ApiCallsComponent,
+    ApiCallComponent
   ],
   imports: [
     BrowserModule,
