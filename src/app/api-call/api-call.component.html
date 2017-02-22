@@ -14,6 +14,14 @@
     <label>name: </label>
     <input [(ngModel)]="apiCall.params.name" placeholder="name"/>
 </div>
+<div *ngIf="apiCall.params">
+    <label>gender: </label>
+    <input [(ngModel)]="apiCall.params.gender" placeholder="gender"/>
+</div>
+<div *ngIf="apiCall.params">
+    <label>birthDate: </label>
+    <input [(ngModel)]="apiCall.params.birthDate" placeholder="birthDate"/>
+</div>
 
 <button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
 
