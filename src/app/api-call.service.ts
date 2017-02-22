@@ -43,5 +43,6 @@ export class ApiCallService {
     return this.http.get(`${this.apiUrl}v1/athena/fhir/PatientSearch`, basicOptions)
            .toPromise()
            .then(response => {return response.json(); })
+           .catch( error => { return error.json(); })
   }
 }

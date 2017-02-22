@@ -31,6 +31,10 @@ export class ApiCallComponent implements OnInit {
     this.apiCallService.patientSearch(this.apiCall.params).then((result) => {
       this.isLoading = false;
       return this.response = result;
+    })
+    .catch((error) => {
+      this.isLoading = false;
+      return this.response = error;
     });
   }
 
