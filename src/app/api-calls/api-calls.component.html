@@ -1,5 +1,17 @@
-<ul class="nav nav-pills nav-stacked">
-  <li *ngFor="let apiCall of apiCalls">
-    <a href="#">{{apiCall}}</a>
-  </li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <ul class="nav nav-pills nav-stacked">
+        <li *ngFor="let apiCall of apiCalls"
+          (click)="onSelect(apiCall)"
+          [class.active]="apiCall == selectedApiCall"
+          >
+          <a href="#">{{apiCall.name}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <app-api-call *ngIf="selectedApiCall" [apiCall]="selectedApiCall"></app-api-call>
+    </div>
+  </div>
+</div>

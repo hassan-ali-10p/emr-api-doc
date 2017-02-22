@@ -5,18 +5,20 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ApiCallsComponent } from './api-calls/api-calls.component';
-
+import { ApiCallComponent } from './api-call/api-call.component';
+import { ApiCallService } from './api-call.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ApiCallsComponent
+    ApiCallsComponent,
+    ApiCallComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ApiCallService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

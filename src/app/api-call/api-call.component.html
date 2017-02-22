@@ -1,0 +1,31 @@
+<h3>
+  <label>ApiUrl : </label>
+  {{apiCall.url}}
+</h3>
+<h3>
+  <label>Token : </label>
+  {{token}}
+</h3>
+
+<br>
+<br>
+<!-- Show Params -->
+<div *ngIf="apiCall.params">
+    <label>name: </label>
+    <input [(ngModel)]="apiCall.params.name" placeholder="name"/>
+</div>
+
+<button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+
+<br>
+<br>
+<br>
+
+<h3>
+  <label>Response : </label>
+</h3>
+
+<pre *ngIf="response">
+  {{response | json}}
+</pre>
