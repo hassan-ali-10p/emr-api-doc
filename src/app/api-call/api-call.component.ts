@@ -11,6 +11,7 @@ export class ApiCallComponent implements OnInit {
   @Input()
   apiCall: IApiCall;
   token: string;
+  response: any;
 
   constructor(private apiCallService: ApiCallService) { }
 
@@ -19,11 +20,18 @@ export class ApiCallComponent implements OnInit {
   }
 
   getToken() {
-    this.apiCallService.getToken().then((respToken) => {this.token = respToken});
+    this.apiCallService.getToken().then((respToken) => {
+      this.token = respToken;
+      this.apiCallService.setHeader(this.token);
+    });
+  }
+
+  patientSearch() {
+    this.apiCallService.patientSearch(this.apiCall.params).then((result) => {this.response = result});
   }
 
   onSubmit():void {
-    console.log(this.token);
+    this.patientSearch();
   }
 
 }

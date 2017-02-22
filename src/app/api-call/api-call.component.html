@@ -16,3 +16,16 @@
 </div>
 
 <button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+
+<br>
+<br>
+<br>
+
+<h3>
+  <label>Response : </label>
+</h3>
+
+<pre *ngIf="response">
+  {{response | json}}
+</pre>
