@@ -8,8 +8,8 @@ import { IApiCall } from '../api-call';
 })
 export class ApiCallsComponent implements OnInit {
   apiCalls: IApiCall[] = [
-    {name: 'Google', url: 'http://www.google.com'},
-    {name: 'Yahoo', url: 'http://www.yahoo.com'}
+    {name: 'Google', url: 'http://www.google.com', httpVerb: 'GET', params: {name: 'Timothy'}},
+    {name: 'Yahoo', url: 'http://www.yahoo.com', httpVerb: 'GET'}
   ];
   selectedApiCall: IApiCall;
 

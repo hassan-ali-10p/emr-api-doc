@@ -1,3 +1,11 @@
 <p>
   {{apiCall.url}}
 </p>
+
+<!-- Show Params -->
+<div *ngIf="apiCall.params">
+    <label>name: </label>
+    <input [(ngModel)]="apiCall.params.name" placeholder="name"/>
+</div>
+
+<button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>

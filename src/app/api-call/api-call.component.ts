@@ -15,4 +15,8 @@ export class ApiCallComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit():void {
+    console.log(this.apiCall);
+  }
+
 }
