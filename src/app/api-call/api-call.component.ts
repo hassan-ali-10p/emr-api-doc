@@ -12,6 +12,7 @@ export class ApiCallComponent implements OnInit {
   apiCall: IApiCall;
   token: string;
   response: any;
+  isLoading: boolean = false;
 
   constructor(private apiCallService: ApiCallService) { }
 
@@ -27,10 +28,14 @@ export class ApiCallComponent implements OnInit {
   }
 
   patientSearch() {
-    this.apiCallService.patientSearch(this.apiCall.params).then((result) => {this.response = result});
+    this.apiCallService.patientSearch(this.apiCall.params).then((result) => {
+      this.isLoading = false;
+      return this.response = result;
+    });
   }
 
   onSubmit():void {
+    this.isLoading = true;
     this.patientSearch();
   }
 

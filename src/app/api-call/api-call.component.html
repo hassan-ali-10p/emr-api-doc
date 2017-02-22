@@ -26,6 +26,9 @@
   <label>Response : </label>
 </h3>
 
+<div class="" *ngIf="isLoading">
+  Loading ...
+</div>
 <pre *ngIf="response">
   {{response | json}}
 </pre>
