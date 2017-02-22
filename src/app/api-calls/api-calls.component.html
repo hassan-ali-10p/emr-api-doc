@@ -6,12 +6,12 @@
           (click)="onSelect(apiCall)"
           [class.active]="apiCall == selectedApiCall"
           >
-          <a href="#">{{apiCall}}</a>
+          <a href="#">{{apiCall.name}}</a>
         </li>
       </ul>
     </div>
     <div class="col-md-8">
-      call-detail-view
+      <app-api-call *ngIf="selectedApiCall" [apiCall]="selectedApiCall"></app-api-call>
     </div>
   </div>
 </div>
