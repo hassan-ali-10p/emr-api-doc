@@ -29,7 +29,7 @@ export class ApiCallService {
            })
   }
 
-  patientSearch(params): Promise<any>{
+  getRequest(params, requestUrl): Promise<any>{
     let newparams = new URLSearchParams();
     Object.keys(params).forEach((paramKey) => {
       newparams.append(paramKey, `${params[paramKey]}`);
@@ -40,7 +40,7 @@ export class ApiCallService {
       headers: this.headers,
     };
 
-    return this.http.get(`${this.apiUrl}v1/athena/fhir/PatientSearch`, basicOptions)
+    return this.http.get(`${this.apiUrl}${requestUrl}`, basicOptions)
            .toPromise()
            .then(response => {return response.json(); })
            .catch( error => { return error.json(); })
