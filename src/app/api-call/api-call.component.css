@@ -1,0 +1,20 @@
+.cutomForm .input-group{
+  display: block;
+}
+
+.cutomForm .form-control{
+  float: none;
+  width: auto;
+  display: inline-block;
+  border-radius: 4px;
+  margin-left: 5px;
+}
+
+.btnClose{
+  background: transparent;
+  border: 0;
+  color: red;
+  opacity: 1;
+  font-size: 18px;
+  font-weight: 800;
+}

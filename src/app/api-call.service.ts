@@ -31,9 +31,9 @@ export class ApiCallService {
 
   patientSearch(params): Promise<any>{
     let newparams = new URLSearchParams();
-    newparams.append('name', `${params.name}`);
-    newparams.append('gender', `${params.gender}`);
-    newparams.append('birthDate', `${params.birthdate}`);
+    Object.keys(params).forEach((paramKey) => {
+      newparams.append(paramKey, `${params[paramKey]}`);
+    })
 
     let basicOptions:RequestOptionsArgs = {
       search: newparams,

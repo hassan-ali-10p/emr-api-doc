@@ -9,19 +9,23 @@
 
 <br>
 <br>
+
+
 <!-- Show Params -->
-<div *ngIf="apiCall.params">
-    <label>name: </label>
-    <input [(ngModel)]="apiCall.params.name" placeholder="name"/>
+<div *ngFor="let paramKey of paramKeys()" class="cutomForm">
+  <div class="form-group">
+    <div class="input-group">
+
+      <label>{{paramKey}}: </label>
+      <input class="form-control" [(ngModel)]="apiCall.params[paramKey]"/>
+
+      <button type="button" class="btnClose" aria-label="Close text-danger" (click)="removeParam(paramKey)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
 </div>
-<div *ngIf="apiCall.params">
-    <label>gender: </label>
-    <input [(ngModel)]="apiCall.params.gender" placeholder="gender"/>
-</div>
-<div *ngIf="apiCall.params">
-    <label>birthDate: </label>
-    <input [(ngModel)]="apiCall.params.birthDate" placeholder="birthDate"/>
-</div>
+
 
 <button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
 

@@ -38,6 +38,14 @@ export class ApiCallComponent implements OnInit {
     });
   }
 
+  paramKeys() {
+    return Object.keys(this.apiCall.params);
+  }
+
+  removeParam(paramKey) {
+    delete this.apiCall.params[paramKey];
+  }
+
   onSubmit():void {
     this.isLoading = true;
     this.patientSearch();
