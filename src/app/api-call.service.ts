@@ -53,7 +53,7 @@ export class ApiCallService {
       headers: this.headers,
     };
 
-    // Listener create Appointment takes different header and port protocol
+    // Only "Listener create Appointment" call takes different header and port protocol (have to be removed)
     if (requestUrl == 'v1/endpoint/fhir') {
       basicOptions = new Headers({
         'Content-Type': 'application/json',
