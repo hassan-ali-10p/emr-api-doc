@@ -27,7 +27,7 @@ export class ApiCallComponent implements OnInit {
     });
   }
 
-  patientSearch() {
+  getRequest() {
     this.apiCallService.getRequest(this.apiCall.params, this.apiCall.url).then((result) => {
       this.isLoading = false;
       return this.response = result;
@@ -38,8 +38,23 @@ export class ApiCallComponent implements OnInit {
     });
   }
 
+  postRequest() {
+    this.apiCallService.postRequest(this.apiCall.payload, this.apiCall.url).then((result) => {
+      this.isLoading = false;
+      return this.response = result;
+    })
+    .catch((error) => {
+      this.isLoading = false;
+      return this.response = error;
+    });
+  }
+
   paramKeys() {
-    return Object.keys(this.apiCall.params);
+    if (this.apiCall.params) {
+      return Object.keys(this.apiCall.params);
+    } else {
+      return [];
+    }
   }
 
   removeParam(paramKey) {
@@ -48,7 +63,15 @@ export class ApiCallComponent implements OnInit {
 
   onSubmit():void {
     this.isLoading = true;
-    this.patientSearch();
+    switch(this.apiCall.httpVerb) {
+      case "GET":
+        this.getRequest();
+        break;
+      case "POST":
+        this.postRequest();
+        break;
+      default: return null;
+    }
   }
 
 }

@@ -29,7 +29,7 @@ export class ApiCallService {
            })
   }
 
-  getRequest(params, requestUrl): Promise<any>{
+  getRequest(params={}, requestUrl): Promise<any>{
     let newparams = new URLSearchParams();
     Object.keys(params).forEach((paramKey) => {
       newparams.append(paramKey, `${params[paramKey]}`);
@@ -41,6 +41,18 @@ export class ApiCallService {
     };
 
     return this.http.get(`${this.apiUrl}${requestUrl}`, basicOptions)
+           .toPromise()
+           .then(response => {return response.json(); })
+           .catch( error => { return error.json(); })
+  }
+
+  postRequest(payload={}, requestUrl): Promise<any>{
+
+    let basicOptions:RequestOptionsArgs = {
+      headers: this.headers,
+    };
+
+    return this.http.post(`${this.apiUrl}${requestUrl}`, payload, basicOptions)
            .toPromise()
            .then(response => {return response.json(); })
            .catch( error => { return error.json(); })

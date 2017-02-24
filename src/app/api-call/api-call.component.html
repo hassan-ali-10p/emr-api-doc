@@ -26,6 +26,11 @@
   </div>
 </div>
 
+<!-- Show Payload -->
+<div class="form-group" *ngIf="apiCall.httpVerb == 'POST'">
+  <label for="payload">Pyaload:</label>
+  <textarea class="form-control" rows="5" id="comment" [(ngModel)]="apiCall.payload"></textarea>
+</div>
 
 <button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
 
