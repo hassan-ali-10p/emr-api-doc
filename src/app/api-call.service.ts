@@ -4,7 +4,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ApiCallService {
-  private apiUrl = "https://110.93.199.13:1443/";
+  private apiUrl = "https://110.93.199.13";
+  private apiPort = "1443";
   private token;
   private headers;
 
@@ -18,7 +19,7 @@ export class ApiCallService {
   constructor(private http: Http) { }
 
   getToken(): Promise<any>{
-    return this.http.post(`${this.apiUrl}v1/auth`, {
+    return this.http.post(`${this.apiUrl}:${this.apiPort}/v1/auth`, {
             	"key": "key123",
             	"secret": "secret123"
             })
@@ -40,7 +41,7 @@ export class ApiCallService {
       headers: this.headers,
     };
 
-    return this.http.get(`${this.apiUrl}${requestUrl}`, basicOptions)
+    return this.http.get(`${this.apiUrl}:${this.apiPort}/${requestUrl}`, basicOptions)
            .toPromise()
            .then(response => {return response.json(); })
            .catch( error => { return error.json(); })
@@ -52,7 +53,18 @@ export class ApiCallService {
       headers: this.headers,
     };
 
-    return this.http.post(`${this.apiUrl}${requestUrl}`, payload, basicOptions)
+    // Listener create Appointment takes different header and port protocol
+    if (requestUrl == 'v1/endpoint/fhir') {
+      basicOptions = new Headers({
+        'Content-Type': 'application/json',
+        'verification-token': this.token
+      });
+      this.apiPort = '3443';
+      this.apiUrl = this.apiUrl.replace(/https/, 'http');
+    }
+
+
+    return this.http.post(`${this.apiUrl}:${this.apiPort}/${requestUrl}`, payload, basicOptions)
            .toPromise()
            .then(response => {return response.json(); })
            .catch( error => { return error.json(); })

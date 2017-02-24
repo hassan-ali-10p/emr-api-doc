@@ -18,19 +18,16 @@
   <button type="submit" name="Submit" class="btn btn-primary">Submit</button>
 </form>
 
-
 <!-- Show Payload -->
 <div  *ngIf="apiCall.httpVerb == 'POST'">
   <div class="form-group">
     <label for="payload">Pyaload:</label>
-    <textarea class="form-control" rows="5" id="comment" [(ngModel)]="apiCall.payload"></textarea>
+    <textarea class="form-control" rows="10" id="comment" [(ngModel)]="apiCall.payload"></textarea>
   </div>
 
   <button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
 </div>
 
-<br>
-<br>
 <br>
 
 <h3>
@@ -40,6 +37,7 @@
 <div class="" *ngIf="isLoading">
   Loading ...
 </div>
+
 <pre *ngIf="apiCall.response">
   {{apiCall.response | json}}
 </pre>
