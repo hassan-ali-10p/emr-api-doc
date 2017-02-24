@@ -11,6 +11,18 @@
 <br>
 
 
+<!-- login in form -->
+<form [formGroup]="loginForm" (ngSubmit)="doLogin($event)">
+  <div class="" *ngFor="let paramKey of paramKeys()">
+    <input formControlName="{{paramKey}}" type="text" placeholder="Your email">
+    <input formControlName="{{paramKey}}Checked" type="checkbox" value="true">
+  </div>
+    <!-- <input type="checkbox" id="cbox1" value="first_checkbox"> This is the first checkbox</label> -->
+  <button type="submit">Log in</button>
+</form>
+
+
+
 <!-- Show Params -->
 <div *ngFor="let paramKey of paramKeys()" class="cutomForm">
   <div class="form-group">

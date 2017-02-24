@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IApiCall } from '../api-call';
 import { ApiCallService } from '../api-call.service';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-api-call',
@@ -14,10 +15,22 @@ export class ApiCallComponent implements OnInit {
   response: any;
   isLoading: boolean = false;
 
-  constructor(private apiCallService: ApiCallService) { }
+  public loginForm = new FormGroup({});
+
+  constructor(private apiCallService: ApiCallService, public fb: FormBuilder) { }
 
   ngOnInit() {
+    if (this.apiCall.params) {
+      Object.keys(this.apiCall.params).forEach((paramKey) => {
+        this.loginForm.addControl(paramKey, new FormControl(paramKey));
+        this.loginForm.addControl(`${paramKey}Checked`, new FormControl(true));
+      });
+    }
     this.getToken();
+  }
+
+  doLogin(event){
+    console.log(this.loginForm.value);
   }
 
   getToken() {
