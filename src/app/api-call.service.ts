@@ -29,18 +29,30 @@ export class ApiCallService {
            })
   }
 
-  patientSearch(params): Promise<any>{
+  getRequest(params={}, requestUrl): Promise<any>{
     let newparams = new URLSearchParams();
-    newparams.append('name', `${params.name}`);
-    newparams.append('gender', `${params.gender}`);
-    newparams.append('birthDate', `${params.birthdate}`);
+    Object.keys(params).forEach((paramKey) => {
+      newparams.append(paramKey, `${params[paramKey]}`);
+    })
 
     let basicOptions:RequestOptionsArgs = {
       search: newparams,
       headers: this.headers,
     };
 
-    return this.http.get(`${this.apiUrl}v1/athena/fhir/PatientSearch`, basicOptions)
+    return this.http.get(`${this.apiUrl}${requestUrl}`, basicOptions)
+           .toPromise()
+           .then(response => {return response.json(); })
+           .catch( error => { return error.json(); })
+  }
+
+  postRequest(payload={}, requestUrl): Promise<any>{
+
+    let basicOptions:RequestOptionsArgs = {
+      headers: this.headers,
+    };
+
+    return this.http.post(`${this.apiUrl}${requestUrl}`, payload, basicOptions)
            .toPromise()
            .then(response => {return response.json(); })
            .catch( error => { return error.json(); })

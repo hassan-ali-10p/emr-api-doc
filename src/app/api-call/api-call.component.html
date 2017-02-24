@@ -2,29 +2,32 @@
   <label>ApiUrl : </label>
   {{apiCall.url}}
 </h3>
-<h3>
-  <label>Token : </label>
-  {{token}}
-</h3>
 
 <br>
 <br>
-<!-- Show Params -->
-<div *ngIf="apiCall.params">
-    <label>name: </label>
-    <input [(ngModel)]="apiCall.params.name" placeholder="name"/>
-</div>
-<div *ngIf="apiCall.params">
-    <label>gender: </label>
-    <input [(ngModel)]="apiCall.params.gender" placeholder="gender"/>
-</div>
-<div *ngIf="apiCall.params">
-    <label>birthDate: </label>
-    <input [(ngModel)]="apiCall.params.birthDate" placeholder="birthDate"/>
-</div>
 
-<button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
 
+<!-- login in form -->
+<form [formGroup]="getRequestForm" (ngSubmit)="onSubmit()" *ngIf="apiCall.httpVerb == 'GET'" class="customForm">
+  <div class="input-group" *ngFor="let paramKey of paramKeys()">
+    <label for="">{{paramKey}} : </label>
+    <input formControlName="{{paramKey}}" type="text" class="form-control">
+    <input formControlName="{{paramKey}}Checked" type="checkbox" value="true">
+  </div>
+
+  <button type="submit" name="Submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<!-- Show Payload -->
+<div  *ngIf="apiCall.httpVerb == 'POST'">
+  <div class="form-group">
+    <label for="payload">Pyaload:</label>
+    <textarea class="form-control" rows="5" id="comment" [(ngModel)]="apiCall.payload"></textarea>
+  </div>
+
+  <button type="button" name="Submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+</div>
 
 <br>
 <br>
@@ -37,6 +40,6 @@
 <div class="" *ngIf="isLoading">
   Loading ...
 </div>
-<pre *ngIf="response">
-  {{response | json}}
+<pre *ngIf="apiCall.response">
+  {{apiCall.response | json}}
 </pre>
