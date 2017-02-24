@@ -1,13 +1,18 @@
-.cutomForm .input-group{
+.customForm .input-group{
   display: block;
+  margin-bottom: 10px;
+}
+.customForm .input-group label{
+  text-transform: capitalize;
 }
 
-.cutomForm .form-control{
+.customForm .form-control{
   float: none;
   width: auto;
   display: inline-block;
   border-radius: 4px;
   margin-left: 5px;
+  margin-right: 5px;
 }
 
 .btnClose{

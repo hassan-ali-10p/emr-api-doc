@@ -12,7 +12,6 @@ export class ApiCallComponent implements OnInit {
   @Input()
   apiCall: IApiCall;
   token: string;
-  response: any;
   isLoading: boolean = false;
 
   public getRequestForm = new FormGroup({});
@@ -49,22 +48,22 @@ export class ApiCallComponent implements OnInit {
     })
     this.apiCallService.getRequest(tempParams, this.apiCall.url).then((result) => {
       this.isLoading = false;
-      return this.response = result;
+      return this.apiCall.response = result;
     })
     .catch((error) => {
       this.isLoading = false;
-      return this.response = error;
+      return this.apiCall.response = error;
     });
   }
 
   postRequest() {
     this.apiCallService.postRequest(this.apiCall.payload, this.apiCall.url).then((result) => {
       this.isLoading = false;
-      return this.response = result;
+      return this.apiCall.response = result;
     })
     .catch((error) => {
       this.isLoading = false;
-      return this.response = error;
+      return this.apiCall.response = error;
     });
   }
 
@@ -82,6 +81,7 @@ export class ApiCallComponent implements OnInit {
 
   onSubmit():void {
     this.isLoading = true;
+    this.apiCall.response = null;
     switch(this.apiCall.httpVerb) {
       case "GET":
         this.getRequest(this.getRequestForm.value);

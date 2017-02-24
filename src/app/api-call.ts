@@ -4,4 +4,5 @@ export interface IApiCall {
   httpVerb: string;
   params?: Object;
   payload?: Object;
+  response?: Object;
 }

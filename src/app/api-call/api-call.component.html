@@ -2,23 +2,19 @@
   <label>ApiUrl : </label>
   {{apiCall.url}}
 </h3>
-<h3>
-  <label>Token : </label>
-  {{token}}
-</h3>
 
 <br>
 <br>
 
 
 <!-- login in form -->
-<form [formGroup]="getRequestForm" (ngSubmit)="onSubmit()" *ngIf="apiCall.httpVerb == 'GET'">
-  <div class="" *ngFor="let paramKey of paramKeys()">
+<form [formGroup]="getRequestForm" (ngSubmit)="onSubmit()" *ngIf="apiCall.httpVerb == 'GET'" class="customForm">
+  <div class="input-group" *ngFor="let paramKey of paramKeys()">
     <label for="">{{paramKey}} : </label>
-    <input formControlName="{{paramKey}}" type="text">
+    <input formControlName="{{paramKey}}" type="text" class="form-control">
     <input formControlName="{{paramKey}}Checked" type="checkbox" value="true">
   </div>
-    <!-- <input type="checkbox" id="cbox1" value="first_checkbox"> This is the first checkbox</label> -->
+
   <button type="submit" name="Submit" class="btn btn-primary">Submit</button>
 </form>
 
@@ -44,6 +40,6 @@
 <div class="" *ngIf="isLoading">
   Loading ...
 </div>
-<pre *ngIf="response">
-  {{response | json}}
+<pre *ngIf="apiCall.response">
+  {{apiCall.response | json}}
 </pre>

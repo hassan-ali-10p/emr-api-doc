@@ -9,7 +9,6 @@ import { IApiCall } from '../api-call';
 export class ApiCallsComponent implements OnInit {
   apiCalls: IApiCall[] = [
     {name: 'Patient Search', url: 'v1/athena/fhir/PatientSearch', httpVerb: 'GET', params: {name: 'Timothy', gender: 'male', birthDate: '2014-12-12'}},
-    {name: 'Yahoo', url: 'http://www.yahoo.com', httpVerb: 'GET'},
     {name: 'New Scheduling', url: 'v1/athena/fhir/appointment', httpVerb: 'POST', payload:
       JSON.stringify({
         "identifier": [
