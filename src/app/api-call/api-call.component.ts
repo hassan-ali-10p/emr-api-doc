@@ -15,22 +15,22 @@ export class ApiCallComponent implements OnInit {
   response: any;
   isLoading: boolean = false;
 
-  public loginForm = new FormGroup({});
+  public getRequestForm = new FormGroup({});
 
   constructor(private apiCallService: ApiCallService, public fb: FormBuilder) { }
 
   ngOnInit() {
     if (this.apiCall.params) {
       Object.keys(this.apiCall.params).forEach((paramKey) => {
-        this.loginForm.addControl(paramKey, new FormControl(paramKey));
-        this.loginForm.addControl(`${paramKey}Checked`, new FormControl(true));
+        this.getRequestForm.addControl(paramKey, new FormControl(this.apiCall.params[paramKey]));
+        this.getRequestForm.addControl(`${paramKey}Checked`, new FormControl(true));
       });
     }
     this.getToken();
   }
 
   doLogin(event){
-    console.log(this.loginForm.value);
+    console.log(this.getRequestForm.value);
   }
 
   getToken() {
@@ -40,8 +40,14 @@ export class ApiCallComponent implements OnInit {
     });
   }
 
-  getRequest() {
-    this.apiCallService.getRequest(this.apiCall.params, this.apiCall.url).then((result) => {
+  getRequest(params) {
+    let tempParams = {};
+    Object.keys(this.apiCall.params).forEach((paramKey) => {
+      if (params[`${paramKey}Checked`] == true) {
+        tempParams[paramKey] = params[paramKey];
+      }
+    })
+    this.apiCallService.getRequest(tempParams, this.apiCall.url).then((result) => {
       this.isLoading = false;
       return this.response = result;
     })
@@ -78,7 +84,7 @@ export class ApiCallComponent implements OnInit {
     this.isLoading = true;
     switch(this.apiCall.httpVerb) {
       case "GET":
-        this.getRequest();
+        this.getRequest(this.getRequestForm.value);
         break;
       case "POST":
         this.postRequest();
