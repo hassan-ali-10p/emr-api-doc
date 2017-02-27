@@ -1,13 +1,14 @@
-<h3 class='api-url'>
+<h5 class='api-url'>
   <span class="label label-default">{{apiCall.httpVerb}} :</span>
   {{apiCall.url}}
-</h3>
+</h5>
 
 <br>
 <br>
 
 <!-- Login Form -->
 <form [formGroup]="getRequestForm" (ngSubmit)="onSubmit()" *ngIf="apiCall.httpVerb == 'GET'" class="customForm">
+  <h4>Request Parameters</h4>
   <table class="table">
     <thead>
       <tr>
@@ -29,8 +30,8 @@
 
 <!-- Show Payload -->
 <div  *ngIf="apiCall.httpVerb == 'POST'">
+  <h4 for="payload">Request payload (JSON)</h4>
   <div class="form-group">
-    <label for="payload">Request payload (JSON)</label>
     <textarea class="form-control" rows="10" id="comment" [(ngModel)]="apiCall.payload"></textarea>
   </div>
 
@@ -39,9 +40,7 @@
 
 <br>
 
-<h3>
-  <label>Response : </label>
-</h3>
+<h4>Response : </h4>
 
 <div class="" *ngIf="isLoading">
   Loading ...
