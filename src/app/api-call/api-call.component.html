@@ -30,7 +30,7 @@
 
 <!-- Show Payload -->
 <div  *ngIf="apiCall.httpVerb == 'POST'">
-  <h4 for="payload">Request payload (JSON)</h4>
+  <h4>Request payload (JSON)</h4>
   <div class="form-group">
     <textarea class="form-control" rows="10" id="comment" [(ngModel)]="apiCall.payload"></textarea>
   </div>
