@@ -9,7 +9,7 @@ import { IApiCall } from '../api-call';
 export class ApiCallsComponent implements OnInit {
   apiCalls: IApiCall[] = [
     {name: 'Patient Search', url: 'v1/athena/fhir/PatientSearch', httpVerb: 'GET', params: {name: 'Timothy', gender: 'male', birthDate: '2014-12-12'}},
-    {name: 'Appointment', url: 'v1/athena/fhir/appointment', httpVerb: 'POST', payload:
+    {name: 'Create Appointment', url: 'v1/athena/fhir/appointment', httpVerb: 'POST', payload:
       JSON.stringify({
          "identifier":[
             {
@@ -56,10 +56,10 @@ export class ApiCallsComponent implements OnInit {
          ]
       }, null, "  ")
     },
-    {name: 'Slot', url: 'v1/athena/fhir/Slot', httpVerb: 'GET', params:
+    {name: 'Get Appointment Slots', url: 'v1/athena/fhir/Slot', httpVerb: 'GET', params:
       {'slot-type': 'department|150', start: '2017-02-10', end: '2017-02-10', reason: 'reason|563', schedule: 'provider/108'}
     },
-    {name: 'Listener Create Appointment', url: 'v1/endpoint/fhir', httpVerb: 'POST', payload:
+    {name: 'Listen for new EMR Appointment', url: 'v1/endpoint/fhir', httpVerb: 'POST', payload:
       JSON.stringify({
         "Meta": {
           "DataModel": "Scheduling",
