@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { NotificationsService } from 'angular2-notifications';
 import { IApiCall } from '../api-call';
 import { ApiCallService } from '../api-call.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
@@ -16,7 +17,7 @@ export class ApiCallComponent implements OnInit, OnChanges {
 
   public getRequestForm;
 
-  constructor(private apiCallService: ApiCallService, public fb: FormBuilder) { }
+  constructor(private apiCallService: ApiCallService, public fb: FormBuilder, private _service: NotificationsService) { }
 
   ngOnInit() {
   }
@@ -40,6 +41,17 @@ export class ApiCallComponent implements OnInit, OnChanges {
     this.apiCallService.getToken().then((respToken) => {
       this.token = respToken;
       this.apiCallService.setHeader(this.token);
+    }).catch((error) => {
+      this._service.error(
+          'Invalid Token',
+          'Please refresh the page.',
+          {
+              timeOut: 5000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false
+          }
+      )
     });
   }
 

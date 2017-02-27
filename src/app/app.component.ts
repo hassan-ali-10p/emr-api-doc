@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Blackwell Gateway Testing Tool';
+  public options = {
+    position: ["bottom", "left"],
+    timeOut: 5000,
+    lastOnBottom: true
+  }
 }

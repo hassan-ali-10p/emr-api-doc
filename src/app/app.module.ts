@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { ApiCallsComponent } from './api-calls/api-calls.component';
@@ -18,7 +19,8 @@ import { ApiCallService } from './api-call.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [ApiCallService],
   bootstrap: [AppComponent]
