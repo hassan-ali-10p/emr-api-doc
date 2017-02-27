@@ -6,15 +6,24 @@
 <br>
 <br>
 
-
-<!-- login in form -->
+<!-- Login Form -->
 <form [formGroup]="getRequestForm" (ngSubmit)="onSubmit()" *ngIf="apiCall.httpVerb == 'GET'" class="customForm">
-  <div class="input-group" *ngFor="let paramKey of paramKeys()">
-    <label for="">{{paramKey}} : </label>
-    <input formControlName="{{paramKey}}" type="text" class="form-control">
-    <input formControlName="{{paramKey}}Checked" type="checkbox" value="true">
-  </div>
-
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Include in http request</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paramKey of paramKeys()">
+        <td>{{paramKey}}</td>
+        <td><input formControlName="{{paramKey}}" type="text" class="form-control"></td>
+        <td><input formControlName="{{paramKey}}Checked" type="checkbox" value="true"></td>
+      </tr>
+    </tbody>
+  </table>
   <button type="submit" name="Submit" class="btn btn-primary">Submit</button>
 </form>
 

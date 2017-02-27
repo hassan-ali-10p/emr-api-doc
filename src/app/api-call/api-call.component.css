@@ -1,29 +1,3 @@
-.customForm .input-group{
-  display: block;
-  margin-bottom: 10px;
-}
-.customForm .input-group label{
-  text-transform: capitalize;
-}
-
-.customForm .form-control{
-  float: none;
-  width: auto;
-  display: inline-block;
-  border-radius: 4px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.btnClose{
-  background: transparent;
-  border: 0;
-  color: red;
-  opacity: 1;
-  font-size: 18px;
-  font-weight: 800;
-}
-
 .api-url {
   text-align: right;
   font-style: italic;
