@@ -46,10 +46,10 @@ export class ApiCallComponent implements OnInit, OnChanges {
           'Invalid Token',
           'Please refresh the page.',
           {
-              timeOut: 5000,
+              timeOut: 0,
               showProgressBar: true,
               pauseOnHover: false,
-              clickToClose: false
+              clickToClose: true
           }
       )
     });
