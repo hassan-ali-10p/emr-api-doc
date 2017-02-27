@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { IApiCall } from '../api-call';
 import { ApiCallService } from '../api-call.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
@@ -8,17 +8,21 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
   templateUrl: './api-call.component.html',
   styleUrls: ['./api-call.component.css']
 })
-export class ApiCallComponent implements OnInit {
+export class ApiCallComponent implements OnInit, OnChanges {
   @Input()
   apiCall: IApiCall;
   token: string;
   isLoading: boolean = false;
 
-  public getRequestForm = new FormGroup({});
+  public getRequestForm;
 
   constructor(private apiCallService: ApiCallService, public fb: FormBuilder) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
+    this.getRequestForm = new FormGroup({});
     if (this.apiCall.params) {
       Object.keys(this.apiCall.params).forEach((paramKey) => {
         this.getRequestForm.addControl(paramKey, new FormControl(this.apiCall.params[paramKey]));
