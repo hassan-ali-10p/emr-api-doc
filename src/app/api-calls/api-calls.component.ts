@@ -9,48 +9,56 @@ import { IApiCall } from '../api-call';
 export class ApiCallsComponent implements OnInit {
   apiCalls: IApiCall[] = [
     {name: 'Patient Search', url: 'v1/athena/fhir/PatientSearch', httpVerb: 'GET', params: {name: 'Timothy', gender: 'male', birthDate: '2014-12-12'}},
-    {name: 'New Scheduling', url: 'v1/athena/fhir/appointment', httpVerb: 'POST', payload:
+    {name: 'Appointment', url: 'v1/athena/fhir/appointment', httpVerb: 'POST', payload:
       JSON.stringify({
-        "identifier": [
-          {
-            "type": {
-              "text": "MR"
-            },
-            "value": "123"
-          }
-        ],
-        "status": "proposed",
-        "minutesDuration": 15,
-        "start": "12",
-        "slots": [
-          {
-            "identifier": [
-              {
-                "value": "782923"
-              }
-            ],
-            "start": "2017-02-11T14:00:00.000Z"
-          }
-        ],
-        "reason": {
-          "coding": [
+         "identifier":[
             {
-              "system": "abc",
-              "code": 563
+               "type":{
+                  "text":"MR"
+               },
+               "value":"123"
             }
-          ]
-        },
-        "participant": [
-          {
-            "actor": {
-              "reference": "Patient/123",
-              "display": "Bixby, timothy"
+         ],
+         "status":"proposed",
+         "minutesDuration":15,
+         "start":"12",
+         "slots":[
+            {
+               "identifier":[
+                  {
+                     "value":"782923"
+                  }
+               ],
+               "start":"2017-02-11T14:00:00.000Z"
             }
-          }
-        ]
+         ],
+         "reason":{
+            "coding":[
+               {
+                  "system":"abc",
+                  "code":"563"
+               }
+            ]
+         },
+         "participant":[
+            {
+               "actor":{
+                  "reference":"Patient/123",
+                  "display":"Bixby, timothy"
+               }
+            },
+            {
+               "actor":{
+                  "reference":"HealthCareService/150",
+                  "display":"sadfasdfsadf"
+               }
+            }
+         ]
       }, null, "  ")
     },
-    {name: 'Slot Search', url: 'v1/athena/fhir/Slot', httpVerb: 'GET', params: {}},
+    {name: 'Slot', url: 'v1/athena/fhir/Slot', httpVerb: 'GET', params:
+      {'slot-type': 'department|150', start: '2017-02-10', end: '2017-02-10', reason: 'reason|563', schedule: 'provider/108'}
+    },
     {name: 'Listener Create Appointment', url: 'v1/endpoint/fhir', httpVerb: 'POST', payload:
       JSON.stringify({
         "Meta": {
